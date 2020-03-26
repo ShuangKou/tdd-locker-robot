@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Locker {
-    private Map<CredentialCode, Bag> bags;
+    private final Map<CredentialCode, Bag> bags;
     private int size;
 
     public Locker(Integer size) {
@@ -21,4 +21,9 @@ public class Locker {
         size--;
         return credentialCode;
     }
+
+    public Bag getByCredentialCode(CredentialCode credentialCode) {
+        return bags.get(credentialCode);
+    }
 }
+

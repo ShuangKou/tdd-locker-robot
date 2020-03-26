@@ -2,6 +2,7 @@ package cn.xpbootcamp.gilded_rose;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -25,5 +26,17 @@ public class LockerTest {
         Locker locker = new Locker(0);
         //when ant then
         assertThrows(SaveBagFailException.class, () -> locker.save(bag));
+    }
+
+    @Test
+    void should_get_bag_when_get_bag_given_1_correct_unique_credential_code_and_locker_with_1_bag() {
+        //given
+        Locker locker = new Locker(1);
+        Bag expected = new Bag();
+        CredentialCode credentialCode = locker.save(expected);
+        //when
+        Bag actual = locker.getByCredentialCode(credentialCode);
+        //then
+        assertEquals(expected,actual);
     }
 }
