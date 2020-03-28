@@ -16,7 +16,7 @@ class LockerTest {
         Bag bag = new Bag();
         Locker locker = new Locker(1);
         //when
-        CredentialCode credentialCode = locker.save(bag);
+        CredentialCode credentialCode = locker.saveBag(bag);
         //then
         assertNotNull(credentialCode);
     }
@@ -27,7 +27,7 @@ class LockerTest {
         Bag bag = new Bag();
         Locker locker = new Locker(0);
         //when ant then
-        assertThrows(SaveBagFailException.class, () -> locker.save(bag));
+        assertThrows(SaveBagFailException.class, () -> locker.saveBag(bag));
     }
 
     @Test
@@ -35,10 +35,10 @@ class LockerTest {
         //given
         Locker locker = new Locker(1);
         Bag expected = new Bag();
-        CredentialCode credentialCode = locker.save(expected);
+        CredentialCode credentialCode = locker.saveBag(expected);
         assertEquals(0,locker.getSize());
         //when
-        Bag actual = locker.getByCredentialCode(credentialCode);
+        Bag actual = locker.getBagByCredentialCode(credentialCode);
         //then
         assertEquals(expected, actual);
         assertEquals(1,locker.getSize());
@@ -49,11 +49,11 @@ class LockerTest {
         //given
         Locker locker = new Locker(1);
         Bag bag = new Bag();
-        CredentialCode expectCredentialCode = locker.save(bag);
+        CredentialCode expectCredentialCode = locker.saveBag(bag);
         assertEquals(0,locker.getSize());
         //when
         CredentialCode actualCredentialCode = new CredentialCode();
-        Bag actual = locker.getByCredentialCode(actualCredentialCode);
+        Bag actual = locker.getBagByCredentialCode(actualCredentialCode);
         // then
         assertNotEquals(expectCredentialCode, actualCredentialCode);
         assertNull(actual);

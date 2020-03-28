@@ -16,7 +16,7 @@ public class Locker {
         bags = new HashMap<>(size);
     }
 
-    public CredentialCode save(Bag bag) {
+    public CredentialCode saveBag(Bag bag) {
         if (size <= 0) {
             throw new SaveBagFailException();
         }
@@ -26,7 +26,7 @@ public class Locker {
         return credentialCode;
     }
 
-    public Bag getByCredentialCode(CredentialCode credentialCode) {
+    public Bag getBagByCredentialCode(CredentialCode credentialCode) {
         Bag bag = bags.get(credentialCode);
         if (bag != null) {
             size++;
