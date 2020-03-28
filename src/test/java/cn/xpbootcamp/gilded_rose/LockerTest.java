@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class LockerTest {
+class LockerTest {
 
     @Test
     void should_get_unique_credential_code_when_store_bag_given_1_bag_and_locker_with_1_free_space() {
@@ -31,15 +31,17 @@ public class LockerTest {
     }
 
     @Test
-    void should_get_bag_when_get_bag_given_1_correct_unique_credential_code_and_locker_with_1_bag() {
+    void should_get_bag_and_update_locker_size_when_get_bag_given_1_correct_unique_credential_code_and_locker_with_1_bag() {
         //given
         Locker locker = new Locker(1);
         Bag expected = new Bag();
         CredentialCode credentialCode = locker.save(expected);
+        assertEquals(0,locker.getSize());
         //when
         Bag actual = locker.getByCredentialCode(credentialCode);
         //then
         assertEquals(expected, actual);
+        assertEquals(1,locker.getSize());
     }
 
     @Test
@@ -48,11 +50,13 @@ public class LockerTest {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
         CredentialCode expectCredentialCode = locker.save(bag);
+        assertEquals(0,locker.getSize());
         //when
         CredentialCode actualCredentialCode = new CredentialCode();
         Bag actual = locker.getByCredentialCode(actualCredentialCode);
         // then
         assertNotEquals(expectCredentialCode, actualCredentialCode);
         assertNull(actual);
+        assertEquals(0,locker.getSize());
     }
 }

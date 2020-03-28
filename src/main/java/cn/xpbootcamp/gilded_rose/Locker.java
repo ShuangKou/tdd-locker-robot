@@ -7,6 +7,10 @@ public class Locker {
     private final Map<CredentialCode, Bag> bags;
     private int size;
 
+    public int getSize() {
+        return size;
+    }
+
     public Locker(Integer size) {
         this.size = size;
         bags = new HashMap<>(size);
@@ -23,8 +27,11 @@ public class Locker {
     }
 
     public Bag getByCredentialCode(CredentialCode credentialCode) {
-        size++;
-        return bags.get(credentialCode);
+        Bag bag = bags.get(credentialCode);
+        if (bag != null) {
+            size++;
+        }
+        return bag;
     }
 }
 
