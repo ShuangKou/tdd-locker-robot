@@ -23,6 +23,7 @@ public class Locker {
     }
 
     public Bag getByCredentialCode(CredentialCode credentialCode) {
+        size++;
         return bags.get(credentialCode);
     }
 }
