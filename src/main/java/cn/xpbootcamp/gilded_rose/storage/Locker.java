@@ -15,6 +15,10 @@ public class Locker {
     private final Map<Ticket, Box> ticketToBagMap;
     private int capacity;
 
+    public Map<Ticket, Box> getTicketToBagMap() {
+        return ticketToBagMap;
+    }
+
     public int getCapacity() {
         return capacity;
     }

@@ -1,6 +1,7 @@
 package cn.xpbootcamp.gilded_rose.manager;
 
 
+import cn.xpbootcamp.gilded_rose.exceptions.LockerException;
 import cn.xpbootcamp.gilded_rose.storage.Locker;
 import cn.xpbootcamp.gilded_rose.entity.Bag;
 import cn.xpbootcamp.gilded_rose.entity.Ticket;
@@ -19,7 +20,12 @@ public class SmartLockerRobot {
         return this.getLockerWithMaxFreeSpace().save(bag);
     }
 
-    public Package get(Ticket ticket) {
+    public Bag get(Ticket ticket) {
+        for (Locker locker : lockers) {
+            if (locker.getTicketToBagMap().containsKey(ticket)) {
+                return locker.get(ticket);
+            }
+        }
         return null;
     }
 

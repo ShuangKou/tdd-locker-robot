@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SmartLockerRobotTest {
 
     @Test
-    void should_return_ticket_when_robot_save_bag_given_2_lockers_whth_2_free_space() {
+    void should_return_ticket_when_robot_save_bag_given_2_lockers_with_2_free_space() {
         Bag bag = new Bag();
         Locker locker1 = new Locker(2);
         Locker locker2 = new Locker(2);
@@ -52,4 +52,15 @@ class SmartLockerRobotTest {
         assertEquals("not have free space",lockerException.getMessage());
     }
 
+    @Test
+    void should_get_bag_when_robot_save_bag_given_2_lockers_with_2_free_space_1_valid_ticket() {
+        Bag bag = new Bag();
+        Locker locker1 = new Locker(2);
+        Locker locker2 = new Locker(2);
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(new ArrayList<>(Arrays.asList(locker1, locker2)));
+        Ticket ticket = smartLockerRobot.store(bag);
+        Bag bag1 = smartLockerRobot.get(ticket);
+        assertNotNull(ticket);
+        assertEquals(bag,bag1);
+    }
 }
