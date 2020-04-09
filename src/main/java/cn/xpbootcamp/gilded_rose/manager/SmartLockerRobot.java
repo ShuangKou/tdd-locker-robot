@@ -1,6 +1,9 @@
 package cn.xpbootcamp.gilded_rose;
 
 
+import cn.xpbootcamp.gilded_rose.entity.Bag;
+import cn.xpbootcamp.gilded_rose.entity.Ticket;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
