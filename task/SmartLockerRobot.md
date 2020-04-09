@@ -8,11 +8,11 @@ Then:get a ticket
 
 ### Task2:
 
-Given:1 robot, 1 locker with 2 free space, 1 locker with 1 free space
+Given:1 robot, locker1 with 1 free space, locke2 with 2 free space
 
 When: save bag by robot
 
-Then: get a ticket and store bag in  locker with 2 free space
+Then: get a ticket and store bag in  locker2
 
 ### Task3:
 

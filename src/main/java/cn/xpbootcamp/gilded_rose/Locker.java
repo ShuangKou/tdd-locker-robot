@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Queue;
 
 public class Locker {
-    private final Queue<Box> availableBoxes;
+    private final Queue<Box> usedBoxes;
     private final Map<Ticket, Box> ticketToBagMap;
     private int capacity;
 
@@ -17,7 +17,7 @@ public class Locker {
     public Locker(Integer size) {
         this.capacity = size;
         ticketToBagMap = new HashMap<>();
-        availableBoxes = new LinkedList<>();
+        usedBoxes = new LinkedList<>();
     }
 
     public Ticket save(Bag bag) {
@@ -26,7 +26,7 @@ public class Locker {
         }
         Ticket ticket = new Ticket();
         Box box = new Box(bag);
-        availableBoxes.add(box);
+        usedBoxes.add(box);
         ticketToBagMap.put(ticket, box);
         capacity--;
         return ticket;
