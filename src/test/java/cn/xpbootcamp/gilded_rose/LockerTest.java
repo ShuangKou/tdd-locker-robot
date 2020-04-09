@@ -1,5 +1,9 @@
 package cn.xpbootcamp.gilded_rose;
 
+import cn.xpbootcamp.gilded_rose.entity.Bag;
+import cn.xpbootcamp.gilded_rose.entity.Ticket;
+import cn.xpbootcamp.gilded_rose.exceptions.LockerException;
+import cn.xpbootcamp.gilded_rose.storage.Locker;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

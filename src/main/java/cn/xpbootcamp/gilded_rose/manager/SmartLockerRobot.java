@@ -1,6 +1,7 @@
-package cn.xpbootcamp.gilded_rose;
+package cn.xpbootcamp.gilded_rose.manager;
 
 
+import cn.xpbootcamp.gilded_rose.storage.Locker;
 import cn.xpbootcamp.gilded_rose.entity.Bag;
 import cn.xpbootcamp.gilded_rose.entity.Ticket;
 
