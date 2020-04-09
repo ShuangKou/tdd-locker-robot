@@ -26,7 +26,7 @@ public class SmartLockerRobot {
                 return locker.get(ticket);
             }
         }
-        return null;
+        throw new LockerException("invalid ticket");
     }
 
     private Locker getLockerWithMaxFreeSpace() {

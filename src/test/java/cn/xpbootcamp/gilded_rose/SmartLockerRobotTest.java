@@ -48,8 +48,8 @@ class SmartLockerRobotTest {
         smartLockerRobot.store(bag);
         smartLockerRobot.store(bag2);
 
-        LockerException lockerException = assertThrows(LockerException.class, () ->  smartLockerRobot.store(new Bag()));
-        assertEquals("not have free space",lockerException.getMessage());
+        LockerException lockerException = assertThrows(LockerException.class, () -> smartLockerRobot.store(new Bag()));
+        assertEquals("not have free space", lockerException.getMessage());
     }
 
     @Test
@@ -61,6 +61,18 @@ class SmartLockerRobotTest {
         Ticket ticket = smartLockerRobot.store(bag);
         Bag bag1 = smartLockerRobot.get(ticket);
         assertNotNull(ticket);
-        assertEquals(bag,bag1);
+        assertEquals(bag, bag1);
+    }
+
+    @Test
+    void should_get_bag_fail_when_robot_save_bag_given_2_lockers_with_2_free_space_1_not_valid_ticket() {
+        Bag bag = new Bag();
+        Locker locker1 = new Locker(2);
+        Locker locker2 = new Locker(2);
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(new ArrayList<>(Arrays.asList(locker1, locker2)));
+        Ticket expectTicket = smartLockerRobot.store(bag);
+
+        LockerException lockerException = assertThrows(LockerException.class, () -> smartLockerRobot.get(new Ticket()));
+        assertEquals("invalid ticket", lockerException.getMessage());
     }
 }
