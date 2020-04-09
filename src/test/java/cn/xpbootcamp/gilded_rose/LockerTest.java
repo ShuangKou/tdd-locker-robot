@@ -16,7 +16,7 @@ class LockerTest {
         Bag bag = new Bag();
         Locker locker = new Locker(1);
         //when
-        CredentialCode credentialCode = locker.saveBag(bag);
+        Ticket credentialCode = locker.save(bag);
         //then
         assertNotNull(credentialCode);
     }
@@ -27,7 +27,7 @@ class LockerTest {
         Bag bag = new Bag();
         Locker locker = new Locker(0);
         //when ant then
-        assertThrows(SaveBagFailException.class, () -> locker.saveBag(bag));
+        assertThrows(LockerException.class, () -> locker.save(bag));
     }
 
     @Test
@@ -35,13 +35,13 @@ class LockerTest {
         //given
         Locker locker = new Locker(1);
         Bag expected = new Bag();
-        CredentialCode credentialCode = locker.saveBag(expected);
-        assertEquals(0,locker.getCapacity());
+        Ticket credentialCode = locker.save(expected);
+        assertEquals(0, locker.getCapacity());
         //when
-        Bag actual = locker.getBag(credentialCode);
+        Bag actual = locker.get(credentialCode);
         //then
         assertEquals(expected, actual);
-        assertEquals(1,locker.getCapacity());
+        assertEquals(1, locker.getCapacity());
     }
 
     @Test
@@ -49,14 +49,15 @@ class LockerTest {
         //given
         Locker locker = new Locker(1);
         Bag bag = new Bag();
-        CredentialCode expectCredentialCode = locker.saveBag(bag);
-        assertEquals(0,locker.getCapacity());
+        Ticket expectTicket = locker.save(bag);
+        assertEquals(0, locker.getCapacity());
         //when
-        CredentialCode actualCredentialCode = new CredentialCode();
-        Bag actual = locker.getBag(actualCredentialCode);
+        Ticket actualTicket = new Ticket();
+        LockerException lockerException = assertThrows(LockerException.class, () -> locker.get(actualTicket));
+        assertEquals("invalid ticket",lockerException.getMessage());
         // then
-        assertNotEquals(expectCredentialCode, actualCredentialCode);
-        assertNull(actual);
-        assertEquals(0,locker.getCapacity());
+        assertNotEquals(expectTicket, actualTicket);
+        assertEquals(0, locker.getCapacity());
     }
+
 }

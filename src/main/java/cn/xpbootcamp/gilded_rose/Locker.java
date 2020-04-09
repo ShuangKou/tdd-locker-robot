@@ -1,10 +1,13 @@
 package cn.xpbootcamp.gilded_rose;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class Locker {
-    private final Map<CredentialCode, Bag> bags;
+    private final Queue<Box> availableBoxes;
+    private final Map<Ticket, Box> ticketToBagMap;
     private int capacity;
 
     public int getCapacity() {
@@ -13,25 +16,29 @@ public class Locker {
 
     public Locker(Integer size) {
         this.capacity = size;
-        bags = new HashMap<>(size);
+        ticketToBagMap = new HashMap<>();
+        availableBoxes = new LinkedList<>();
     }
 
-    public CredentialCode saveBag(Bag bag) {
+    public Ticket save(Bag bag) {
         if (capacity <= 0) {
-            throw new SaveBagFailException();
+            throw new LockerException("not have free space");
         }
-        CredentialCode credentialCode = new CredentialCode();
-        bags.put(credentialCode, bag);
+        Ticket ticket = new Ticket();
+        Box box = new Box(bag);
+        availableBoxes.add(box);
+        ticketToBagMap.put(ticket, box);
         capacity--;
-        return credentialCode;
+        return ticket;
     }
 
-    public Bag getBag(CredentialCode credentialCode) {
-        Bag bag = bags.get(credentialCode);
-        if (bag != null) {
-            capacity++;
+    public Bag get(Ticket ticket) {
+        Box box = ticketToBagMap.get(ticket);
+        if (box == null) {
+            throw new LockerException("invalid ticket");
         }
-        return bag;
+        capacity++;
+        return box.getBag();
     }
 }
 
