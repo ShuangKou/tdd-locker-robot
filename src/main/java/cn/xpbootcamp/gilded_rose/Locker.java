@@ -5,31 +5,31 @@ import java.util.Map;
 
 public class Locker {
     private final Map<CredentialCode, Bag> bags;
-    private int size;
+    private int capacity;
 
-    public int getSize() {
-        return size;
+    public int getCapacity() {
+        return capacity;
     }
 
     public Locker(Integer size) {
-        this.size = size;
+        this.capacity = size;
         bags = new HashMap<>(size);
     }
 
     public CredentialCode saveBag(Bag bag) {
-        if (size <= 0) {
+        if (capacity <= 0) {
             throw new SaveBagFailException();
         }
         CredentialCode credentialCode = new CredentialCode();
         bags.put(credentialCode, bag);
-        size--;
+        capacity--;
         return credentialCode;
     }
 
-    public Bag getBagByCredentialCode(CredentialCode credentialCode) {
+    public Bag getBag(CredentialCode credentialCode) {
         Bag bag = bags.get(credentialCode);
         if (bag != null) {
-            size++;
+            capacity++;
         }
         return bag;
     }

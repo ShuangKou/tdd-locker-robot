@@ -36,12 +36,12 @@ class LockerTest {
         Locker locker = new Locker(1);
         Bag expected = new Bag();
         CredentialCode credentialCode = locker.saveBag(expected);
-        assertEquals(0,locker.getSize());
+        assertEquals(0,locker.getCapacity());
         //when
-        Bag actual = locker.getBagByCredentialCode(credentialCode);
+        Bag actual = locker.getBag(credentialCode);
         //then
         assertEquals(expected, actual);
-        assertEquals(1,locker.getSize());
+        assertEquals(1,locker.getCapacity());
     }
 
     @Test
@@ -50,13 +50,13 @@ class LockerTest {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
         CredentialCode expectCredentialCode = locker.saveBag(bag);
-        assertEquals(0,locker.getSize());
+        assertEquals(0,locker.getCapacity());
         //when
         CredentialCode actualCredentialCode = new CredentialCode();
-        Bag actual = locker.getBagByCredentialCode(actualCredentialCode);
+        Bag actual = locker.getBag(actualCredentialCode);
         // then
         assertNotEquals(expectCredentialCode, actualCredentialCode);
         assertNull(actual);
-        assertEquals(0,locker.getSize());
+        assertEquals(0,locker.getCapacity());
     }
 }
