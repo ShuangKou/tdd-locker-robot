@@ -33,4 +33,18 @@ class SmartLockerRobotTest {
         assertEquals(1, locker2.getCapacity());
     }
 
+    @Test
+    void should_save_bag_fail_when_robot_save_bag_given_2_locker_with_0_free_space() {
+        Bag bag = new Bag();
+        Bag bag2 = new Bag();
+        Locker locker1 = new Locker(1);
+        Locker locker2 = new Locker(1);
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(new ArrayList<>(Arrays.asList(locker1, locker2)));
+        smartLockerRobot.store(bag);
+        smartLockerRobot.store(bag2);
+
+        LockerException lockerException = assertThrows(LockerException.class, () ->  smartLockerRobot.store(new Bag()));
+        assertEquals("not have free space",lockerException.getMessage());
+    }
+
 }
