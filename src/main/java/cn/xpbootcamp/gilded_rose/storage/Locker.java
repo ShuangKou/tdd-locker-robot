@@ -38,7 +38,7 @@ public class Locker {
         }
         Box box = new Box(bag);
         usedBoxes.add(box);
-        int boxId = 8 - capacity;
+        int boxId = usedBoxes.size() - 1;
         Ticket ticket = new Ticket(boxId);
         ticketToBagMap.put(ticket, box);
         capacity--;

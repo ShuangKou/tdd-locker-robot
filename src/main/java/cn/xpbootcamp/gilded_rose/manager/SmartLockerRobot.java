@@ -9,6 +9,9 @@ import cn.xpbootcamp.gilded_rose.entity.Ticket;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * @author shuang.kou
+ */
 public class SmartLockerRobot {
     private ArrayList<Locker> lockers;
 
