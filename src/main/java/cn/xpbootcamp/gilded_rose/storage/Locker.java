@@ -51,7 +51,7 @@ public class Locker {
             throw new LockerException("invalid ticket");
         }
         Bag bag = box.getBag();
-        usedBoxes.remove(ticket.getBoxId());
+        usedBoxes.remove(ticket.getBoxId().intValue());
         capacity++;
         return bag;
     }
