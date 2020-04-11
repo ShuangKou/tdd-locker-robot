@@ -5,13 +5,16 @@ import cn.xpbootcamp.gilded_rose.entity.Box;
 import cn.xpbootcamp.gilded_rose.entity.Ticket;
 import cn.xpbootcamp.gilded_rose.exceptions.LockerException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
+/**
+ * @author shuang.kou
+ */
 public class Locker {
-    private final Queue<Box> usedBoxes;
+    private final List<Box> usedBoxes;
     private final Map<Ticket, Box> ticketToBagMap;
     private int capacity;
 
@@ -26,16 +29,17 @@ public class Locker {
     public Locker(Integer size) {
         this.capacity = size;
         ticketToBagMap = new HashMap<>();
-        usedBoxes = new LinkedList<>();
+        usedBoxes = new ArrayList<>();
     }
 
     public Ticket save(Bag bag) {
         if (capacity <= 0) {
             throw new LockerException("not have free space");
         }
-        Ticket ticket = new Ticket();
         Box box = new Box(bag);
         usedBoxes.add(box);
+        int boxId = 8 - capacity;
+        Ticket ticket = new Ticket(boxId);
         ticketToBagMap.put(ticket, box);
         capacity--;
         return ticket;
@@ -46,8 +50,10 @@ public class Locker {
         if (box == null) {
             throw new LockerException("invalid ticket");
         }
+        Bag bag = box.getBag();
+        usedBoxes.remove(ticket.getBoxId());
         capacity++;
-        return box.getBag();
+        return bag;
     }
 }
 
