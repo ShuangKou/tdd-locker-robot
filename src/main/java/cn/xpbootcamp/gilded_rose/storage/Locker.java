@@ -3,7 +3,7 @@ package cn.xpbootcamp.gilded_rose.storage;
 import cn.xpbootcamp.gilded_rose.entity.Bag;
 import cn.xpbootcamp.gilded_rose.entity.Box;
 import cn.xpbootcamp.gilded_rose.entity.Ticket;
-import cn.xpbootcamp.gilded_rose.exceptions.LockerException;
+import cn.xpbootcamp.gilded_rose.exception.LockerException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

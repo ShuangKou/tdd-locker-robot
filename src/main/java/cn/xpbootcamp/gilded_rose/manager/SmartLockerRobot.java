@@ -1,7 +1,7 @@
 package cn.xpbootcamp.gilded_rose.manager;
 
 
-import cn.xpbootcamp.gilded_rose.exceptions.LockerException;
+import cn.xpbootcamp.gilded_rose.exception.LockerException;
 import cn.xpbootcamp.gilded_rose.storage.Locker;
 import cn.xpbootcamp.gilded_rose.entity.Bag;
 import cn.xpbootcamp.gilded_rose.entity.Ticket;

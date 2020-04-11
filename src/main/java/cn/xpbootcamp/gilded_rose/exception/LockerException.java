@@ -1,4 +1,4 @@
-package cn.xpbootcamp.gilded_rose.exceptions;
+package cn.xpbootcamp.gilded_rose.exception;
 
 public class LockerException extends RuntimeException {
 
